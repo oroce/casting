@@ -26,6 +26,10 @@ server.on('message', function(clientId, sourceId, destId, ns, message) {
         console.log('sayin=', data.word);
         spawn('say', [data.word]);
      }
+
+     if (data.type === 'LAUNCH' && data.appId === 'YouTube') {
+       openVLC(data);
+     }
    } catch(x) {console.error(x);}
    //console.log('msg=%s, typeof=%s', message, typeof message);
 });
@@ -54,4 +58,17 @@ function register(serverName, ip, port) {
       ttl: 10
     });
   }, 5000);
+}
+var lookup = require('osx-app');
+function openVLC(data) {
+  var link = data.link;
+  lookup('VLC', function(err, res) {
+    if (err) throw err;
+
+    var path = res.path;
+    var cmd = path + '/Contents/MacOS/VLC';
+    var args = ['--intf', 'dummy', '--play-and-exit', link];
+    console.log('start=%s with=', cmd, args);
+    spawn(cmd, args);
+  });
 }

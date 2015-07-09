@@ -33,7 +33,8 @@ function connect(data) {
     port: data.port
   }, function() {
     var receiver = client.createChannel('sender-0', 'receiver-0', 'urn:x-cast:com.google.cast.receiver', 'JSON');
-    receiver.send({ type: 'LAUNCH', appId: 'say', requestId: 1, word: 'I\'M FARTING' });
+    //receiver.send({ type: 'LAUNCH', appId: 'say', requestId: 1, word: 'RUFF I LOVE YOU' });
+    receiver.send({ type: 'LAUNCH', appId: 'YouTube', requestId: 1, link: 'https://www.youtube.com/watch?v=riwrptGuqtc' });
   });
 }
 

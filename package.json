@@ -17,5 +17,8 @@
     "redis": "^0.12.1",
     "runinterval": "^0.1.0",
     "sillyname": "0.0.3"
+  },
+  "optionalDependencies": {
+    "osx-app": "^1.1.1"
   }
 }
